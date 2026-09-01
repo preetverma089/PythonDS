@@ -45,7 +45,7 @@ print(left_pods)
 # flavour_pods = 2
 # color_pod = 3
 
-# ye power ke lie use hota h    
+# ** ye power ke lie use hota h    
 
 # powerful_pods = flavour_pods ** color_pod
 
