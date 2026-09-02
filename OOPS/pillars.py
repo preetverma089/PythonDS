@@ -114,3 +114,175 @@ class BankAccount:
 
 # d1 = Dog("jacky", "PUG")
 # print(d1.breed)
+
+
+# Polymorphism
+# Same interface/method name, different objects → different behavior.
+class Dog:
+
+    def sound(self):
+        print("Bark")
+
+class Cat:
+
+    def sound(self):
+        print("Meow")
+
+# means diffrent class but same method but diffrent behaviour
+
+# Duck Typing:- "If it walks like a duck and quacks like a duck, treat it like a duck."
+
+# Pillar 4: Abstraction
+# Complex internal implementation hide karo, user ko sirf necessary interface dikhao.
+# hm car usen krte h Start, Brake, Accelerate, Steering ye hme dikhta h 
+#  engine k andar fule injection, combustion, pistons, crankshaft, transmission
+
+# kaise work kar rahe hain, har baar jaanne ki zarurat nahi. it is called abstraction
+from abc import abc, abstractmethod
+
+class Animal(abc):
+    @abstractmethod
+    def sound(self):
+        pass
+
+class Dog(Animal):
+
+    def sound(self):
+        print("Bark")
+
+# agar parent class me method abstract kr rkha h to child class ko uska implementatiojn provide krna hoga 
+# @abstractmethod
+# def sound(self):
+#     pass
+
+# Payment
+#    │
+#    ├── Razorpay
+#    ├── Stripe
+#    └── PayPal
+
+# class Payment(ABC):
+
+#     @abstractmethod
+#     def pay(self, amount):
+#         pass
+
+# pay() every payment provider ko pay method implement krna hoga
+# But internally payment kaise process hota hai, caller ko nahi pata.
+
+# Class Variable VS Instance Variable
+
+# Instance Variable 
+# class User:
+
+#     def __init__(self, name):
+#         self.name = name
+
+# Har object ka apna:
+
+# user1.name
+# user2.name
+
+# Class Variable
+
+# class User:
+#     company = "ABC TECHNOLOGIES"
+
+# Ye class ke saath associated hai.
+# All instances can access it:
+# user1.company
+# user2.company
+
+# means ki instance variable me hr object ka variable diffrent hota h but class variable me class me variable set krte h to jo jo instnce us clss se bnega usme automatic aa jyega
+
+# Instance Method:
+
+# class User:
+#     def login(self):
+#         print("Login")
+    
+# class Method
+
+class User:
+    company = "ABC TECH"
+
+    @classmethod
+    def get_company(cls):
+        return cls.company
+
+# yha pe cls current class ko refer kr rha h 
+# self current object ko refer krta h and cls current class ko refer krta h 
+
+# Static Method
+# @staticmethod :Static method basically class ke namespace ke andar logically related function hai
+
+# class Math:
+
+#     @staticmethod
+#     def add(a, b):
+#         return a + b
+# Isme cls and self ki need ni hoti
+# utility helper k lie use krte h hm isko
+
+# Kabhi-kabhi class ke andar hume aisa function banana hota hai jo:
+
+# object ke data ko use nahi karta
+# class ke data ko bhi use nahi karta
+# bas logically class se related hai
+
+# Tab hum @staticmethod use kar sakte hain.
+# class Calculator:
+
+#     @staticmethod
+#     def add(a, b):
+#         return a + b
+
+# Property
+# kya hota h ki by default instance method self use krta h to hme property/attribute bnane ki need ni hoti
+# but some case me merko property ki need hoti h to @proprerty bnata hu jo dikhta to function ki trh but hota h attribute/Property
+
+# class User:
+
+#     def __init__(self, email):
+#         self._email = email
+
+#     @property
+#     def email(self):
+#         return self._email
+# access krte h isko u1.email attribute ki trh
+
+# Setter: Property ko controlled way se modify bhi kar skte ho
+class User:
+
+    def __init__(self, email):
+        self._email = email
+
+    @property
+    def email(self):
+        return self._email
+
+    @email.setter
+    def email(self, value):
+
+        if "@" not in value:
+            raise ValueError("Invalid email")
+
+        self._email = value
+# This is a common encapsulation pattern.
+
+
+# Dunder Methods
+# Python classes ka very important feature 
+
+# __init__
+# __str__
+# __len__
+# __eq__
+#__add__
+# Dunder = double underScore
+
+# isA and Has_A relation:
+# Mtlb ek class dusri class se related h IS A 
+# ek object me dusra object h HAS A
+# IS A : Inheritance and 
+# HAS A: composition
